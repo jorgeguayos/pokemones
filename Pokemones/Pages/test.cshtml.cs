@@ -6,12 +6,19 @@ namespace Pokemones.Pages
 {
     public class testModel : PageModel
     {
+        private readonly ICalculo _calculo;
+
+        public testModel(ICalculo calculo)
+        {
+            _calculo = calculo;
+           
+        }
         [BindProperty]
         public int numero1 { get; set; }
         [BindProperty]
         public int numero2 { get; set; }
         [BindProperty]
-        public int? resultado { get; set; }
+        public int resultado { get; set; }
         public void OnGet()
         {
             //this.numero1 = 123;
@@ -19,9 +26,8 @@ namespace Pokemones.Pages
   
         }
         public void OnPost()
-        {
-            var calculo = new calculo();
-            var resultado = calculo.operacion(this.numero1, this.numero2);
+        { 
+            var resultado = _calculo.Operacion(this.numero1, this.numero2);
         }
     }
     
